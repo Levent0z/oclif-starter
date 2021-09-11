@@ -19,9 +19,6 @@
     "@types/mocha": "^5",
     "@types/node": "^10",
     "chai": "^4",
-    "eslint": "^5.13",
-    "eslint-config-oclif": "^3.1",
-    "eslint-config-oclif-typescript": "^0.1",
     "mocha": "^5",
     "nyc": "^14",
     "ts-node": "^8",
@@ -45,10 +42,16 @@
   },
   "repository": "levent0z/oclif-starter",
   "scripts": {
-    "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif-dev readme && git add README.md",
+    "demo1": "bin/run -s 'Single Arg' -m 'Multi Arg1' -m 'Multi Arg2' --boolean",
+    "demo2a": "export MY_CLI_ENV_ARG='Env Arg'; bin/run; unset MY_CLI_ENV_ARG",
+    "demo2b": "export MY_CLI_ENV_ARG='Env Arg'; bin/run -e 'Inline Arg'; unset MY_CLI_ENV_ARG",
+    "demo3a": "bin/run -d 'Dependent'",
+    "demo3b": "bin/run -d 'Dependent' -s 'Single Arg' -m 'Multi Arg'",
+    "demo3c": "bin/run -d 'Dependent' -s 'Single Arg'",
+    "demo4": "bin/run --error; echo $?"
   },
   "types": "lib/index.d.ts"
 }
